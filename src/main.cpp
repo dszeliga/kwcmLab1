@@ -2,7 +2,6 @@
 #include "iostream"
 #include "string"
 #include "LaborkaConfig.h"
-int main(){
 
 	/*std::cout << "sin(90)" << degreemath::sin(90) << std::endl;
 	std::cout << "cos(90)" << degreemath::cos(90) << std::endl;
@@ -10,18 +9,55 @@ int main(){
 	std::cout << "ctg(90)" << degreemath::ctg(90) << std::endl;*/
 
 #ifdef USE_TRIGONOMETRY_DEGREE
-	#include "trygonometria.h"
+#include "trygonometria.h"
 #else
-	#include "cmath"
+#include "cmath"
 #endif
 
-double result;
+int main(int argc, char* argv[]) {
+
+	if (argc == 3) {
+		double result = 0;
+		std::string option = argv[1];
+
+		if (!option.compare("--sin")) {
 #ifdef USE_TRIGONOMETRY_DEGREE
-	result = degreemath:sin(90.0);
+			result = degreemath:sin(atof(argv[2]));
 #else
-	result = cos(3.14/4.0);
+			result = cos(atof(argv[2]));
 #endif
 
-	std::cout << "wynik: " << result << std::endl;
-	return 0;
+			std::cout << "wynik: " << result << std::endl;
+
+		}
+		else if (!option.compare("--cos")) {
+#ifdef USE_TRIGONOMETRY_DEGREE
+			result = degreemath:cos(atof(argv[2]));
+#else
+			result = cos(atof(argv[2]));
+#endif
+
+			std::cout << "wynik: " << result << std::endl;
+		}
+		else if (!option.compare("--tg")) {
+#ifdef USE_TRIGONOMETRY_DEGREE
+			result = degreemath:tg(atof(argv[2]));
+#else
+			result = cos(atof(argv[2]));
+#endif
+
+			std::cout << "wynik: " << result << std::endl;
+		}
+		else if (!option.compare("--ctg")) {
+#ifdef USE_TRIGONOMETRY_DEGREE
+			result = degreemath:ctg(atof(argv[2]));
+#else
+			result = cos(atof(argv[2]));
+#endif
+
+			std::cout << "wynik: " << result << std::endl;
+		}
+		return 0;
+	}
 }
+
